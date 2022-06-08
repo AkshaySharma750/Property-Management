@@ -18,12 +18,14 @@ public class PropertyConverter {
     }
 
     public PropertyDTO convertEntityToDTO(PropertyEntity propertyEntity){
+
         PropertyDTO propertyDTO = new PropertyDTO();
         propertyDTO.setId(propertyEntity.getId());
         propertyDTO.setTitle(propertyEntity.getTitle());
         propertyDTO.setAddress(propertyEntity.getAddress());
         propertyDTO.setPrice(propertyEntity.getPrice());
         propertyDTO.setDescription(propertyEntity.getDescription());
+        propertyDTO.setUserId(propertyEntity.getUserEntity().getId());
 
         return propertyDTO;
     }

@@ -2,9 +2,11 @@ package com.mycompany.PropertyManagement.service.impl;
 
 import com.mycompany.PropertyManagement.converter.UserConverter;
 import com.mycompany.PropertyManagement.dto.UserDTO;
+import com.mycompany.PropertyManagement.entity.AddressEntity;
 import com.mycompany.PropertyManagement.entity.UserEntity;
 import com.mycompany.PropertyManagement.exception.BusinessException;
 import com.mycompany.PropertyManagement.exception.ErrorModel;
+import com.mycompany.PropertyManagement.repository.AddressRepository;
 import com.mycompany.PropertyManagement.repository.UserRepository;
 import com.mycompany.PropertyManagement.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Autowired
+    private AddressRepository addressRepository;
+
+    @Autowired
     private UserConverter userConverter;
 
     @Override
@@ -35,10 +40,23 @@ public class UserServiceImpl implements UserService {
             errorModelList.add(errorModel);
             throw new BusinessException(errorModelList);
         }
+
         UserEntity userEntity = userConverter.convertDTOtoEntity(userDTO);
         userEntity = userRepository.save(userEntity);
+
+        AddressEntity addressEntity = new AddressEntity();
+        addressEntity.setHouseNo(userDTO.getHouseNo());
+        addressEntity.setCity(userDTO.getCountry());
+        addressEntity.setPostalCode(userDTO.getPostalCode());
+        addressEntity.setStreet(userDTO.getStreet());
+        addressEntity.setCountry(userDTO.getCountry());
+        addressEntity.setUserEntity(userEntity);
+
+        addressRepository.save(addressEntity);
+
         userDTO = userConverter.convertEntityToDTO(userEntity);
-        return null;
+
+        return userDTO;
     }
 
     @Override
@@ -49,6 +67,7 @@ public class UserServiceImpl implements UserService {
         if(optionalUserEntity.isPresent()){
             userDTO = userConverter.convertEntityToDTO(optionalUserEntity.get());
         }else{
+
           List<ErrorModel> errorModelList = new ArrayList<>();
           ErrorModel errorModel = new ErrorModel();
             errorModel.setCode("INVALID_LOGIN");
@@ -57,6 +76,6 @@ public class UserServiceImpl implements UserService {
 
             throw new BusinessException(errorModelList);
         }
-        return null;
+        return userDTO;
     }
 }
