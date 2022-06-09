@@ -1,6 +1,5 @@
 package com.mycompany.PropertyManagement.controller;
 
-<<<<<<< HEAD
 import com.mycompany.PropertyManagement.dto.CalculatorDTO;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -9,21 +8,17 @@ import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-=======
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
->>>>>>> 6738bb9933a2693296080985f6314a748dcab9f2
 
 @ExtendWith(MockitoExtension.class)
 public class CalculatorControllerTest {
     @InjectMocks
     private CalculatorController calculatorController;
-
-<<<<<<< HEAD
     static Double num1;
     static Double num2;
     static Double num3;
@@ -52,7 +47,7 @@ public class CalculatorControllerTest {
         num1 = null;
         num2 = null;
         num3 = null;
-=======
+    }
     @Test
     @DisplayName("Test Addition Success Scenario")
     void testAddFunction_Success(){
@@ -60,15 +55,8 @@ public class CalculatorControllerTest {
        //Expected is 7.0
         //Always perform assertion
         Assertions.assertEquals(7.0,result);
->>>>>>> 6738bb9933a2693296080985f6314a748dcab9f2
-    }
-
-    @Test
-    @DisplayName("Test Addition Success Scenario")
-<<<<<<< HEAD
-    void testAddFunction_Success(){
         System.out.println("Test Addition Success Scenario");
-       Double result = calculatorController.add(num1,num2,num3);
+        result = calculatorController.add(num1,num2,num3);
        //Expected is 7.0
         //Always perform assertion
         assertEquals(7.0,result);
@@ -80,15 +68,11 @@ public class CalculatorControllerTest {
     void testAddFunction_Failure(){
         System.out.println("Test Addition Failure Scenario");
         Double result = calculatorController.add(num1 - 0.5,num2,num3);
-=======
-    void testAddFunction_Failure(){
-        Double result = calculatorController.add(3.0,3.5,3.5);
->>>>>>> 6738bb9933a2693296080985f6314a748dcab9f2
+        result = calculatorController.add(3.0,3.5,3.5);
         //Deliberately give wrong Expected is 7.0
         //Always perform assertion
         Assertions.assertNotEquals(7.0,result);
     }
-<<<<<<< HEAD
 
     @Test
     @DisplayName("Test Substraction for num1>num2 Scenario")
@@ -119,6 +103,5 @@ public class CalculatorControllerTest {
         assertEquals(HttpStatus.OK.value(), responseEntity.getStatusCodeValue(), "Expecting the as OK");
 
     }
-=======
->>>>>>> 6738bb9933a2693296080985f6314a748dcab9f2
+
 }
