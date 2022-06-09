@@ -14,6 +14,7 @@ public class CalculatorController {
 @GetMapping("/add/{num3}")//method level mapping of a URL to a Controller function
     public Double add(@RequestParam("num1") Double num1, @RequestParam("num2") Double num2,
                       @PathVariable("num3") Double num3){
+        return num1+num2;//dummy changes
         return num1+num2;//random changes
     //some changes
     }
