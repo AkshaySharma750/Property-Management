@@ -15,7 +15,7 @@ public class CalculatorController {
     public Double add(@RequestParam("num1") Double num1, @RequestParam("num2") Double num2,
                       @PathVariable("num3") Double num3){
         return num1+num2;//dummy changes
-        return num1+num2;//random changes
+        //random changes
     //some changes
     }
 
