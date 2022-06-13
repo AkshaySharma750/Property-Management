@@ -11,9 +11,22 @@ import java.util.List;
 @NoArgsConstructor
 public class BusinessException extends RuntimeException{
 
+
     private List<ErrorModel> errors;
 
+    private String message;
+
+    public BusinessException(String message){
+        this.message = message;
+    }
+
+
     public BusinessException(List<ErrorModel> errors){
+
         this. errors = errors;
+    }
+
+    public String getMessage() {
+        return message;
     }
 }

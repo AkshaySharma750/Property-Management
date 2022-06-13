@@ -103,11 +103,13 @@ public class PropertyServiceImpl implements PropertyService {
     public PropertyDTO updatePropertyDescription(PropertyDTO propertyDTO, Long propertyId) {
         Optional<PropertyEntity> optEn = propertyRepository.findById(propertyId);
         PropertyDTO dto = null;
-        if(optEn.isPresent()){
+        if(optEn.isPresent()) {
             PropertyEntity pe = optEn.get();//data from database
             pe.setDescription(propertyDTO.getDescription());
             dto = propertyConverter.convertEntityToDTO(pe);
             propertyRepository.save(pe);
+        }else{
+            throw new BusinessException("No property found for Update");
         }
         return dto;
     }
